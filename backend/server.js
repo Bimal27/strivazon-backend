@@ -30,19 +30,19 @@ const port = process.env.PORT || 3001
 
 // ************************* MIDDLEWARES ********************************
 
-const whiteList = ["http://localhost:3000"];
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whiteList.some(allowedUrl => allowedUrl === origin)) {
-      callback(null, true);
-    } else {
-      const error = new Error("Not allowed by cors!");
-      error.status = 403;
-      callback(error);
-    }
-  },
-  credentials: true
-};
+// const whiteList = ["http://localhost:3000"];
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (whiteList.some(allowedUrl => allowedUrl === origin)) {
+//       callback(null, true);
+//     } else {
+//       const error = new Error("Not allowed by cors!");
+//       error.status = 403;
+//       callback(error);
+//     }
+//   },
+//   credentials: true
+// };
 
 
 // const corsOptions = {
@@ -57,7 +57,12 @@ const corsOptions = {
 // };
 
 
-server.use(cors({ origin: "http://localhost:3000", credentials: true }));
+server.use(
+  cors({
+    origin: "https://strivazon-store-ecommerce.vercel.app",
+    credentials: true
+  })
+);
 server.use(cookieParser());
 
 server.use(express.json())
